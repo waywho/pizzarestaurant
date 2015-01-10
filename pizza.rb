@@ -3,7 +3,6 @@ class PizzaRestaurant
 	def initialize
 		self.menu
 		puts "Welcome to the Pizza World."
-		self.how_to_order
 	end
 
 	def how_to_order
