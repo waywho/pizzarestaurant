@@ -1,8 +1,20 @@
 class PizzaRestaurant
 
 	def initialize
-		puts "Welcome to the Pizza World."
 		self.menu
+		puts "Welcome to the Pizza World."
+		self.how_to_order
+	end
+
+	def how_to_order
+		puts "Would you like to pick the pizza or by ingredient?"
+		print "'pizza' or 'ingredient' > "
+		choice = gets.chomp.downcase
+		if choice == "pizza"
+			self.order
+		elsif choice == "ingredient"
+			self.select_by_ingredient
+		end
 	end
 
 	def menu
@@ -30,8 +42,8 @@ class PizzaRestaurant
 			puts "Sorry we don't have the #{pizza_choice} pizza."
 			puts "Here is the menu:"
 			self.menu_display
-			puts "Would you like to select another one?"
-			self.order
+			puts "Let's try again..."
+			self.how_to_order
 		end
 	end
 
@@ -49,14 +61,8 @@ class PizzaRestaurant
 			puts "Sorry we don't have any pizza with #{ingredient_choice}."
 			puts "Here is the menu:"
 			self.menu_display
-			puts "Would you like to pick the pizza or by ingredient?"
-			print "'pizza' or 'ingredient' > "
-			choice = gets.chomp.downcase
-			if choice == "pizza"
-				self.order
-			elsif choice == "ingredient"
-				self.select_by_ingredient
-			end
+			puts "Let's try again..."
+			self.how_to_order
 		elsif @recommendations.length > 1
 		puts "May we recommend the #{@recommendations} pizzas?"
 		else 
@@ -66,5 +72,6 @@ class PizzaRestaurant
 end
 
 pizza = PizzaRestaurant.new
+pizza.how_to_order
 pizza.order
 pizza.select_by_ingredient
